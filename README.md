@@ -1,2 +1,2 @@
-# LJYmaodou.github.io
-colorful things about maodou&amp;me
+岁月静好，只为有你
+colorful things about Maodou
