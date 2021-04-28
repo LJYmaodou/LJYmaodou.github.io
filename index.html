@@ -1,23 +1,635 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-{% block title %}{{ config.title }}{% if theme.index_with_subtitle and config.subtitle %} - {{config.subtitle }}{% endif %}{% endblock %}
+<link rel="stylesheet" href="/css/main.css">
 
-{% block page_class %}
-  {% if is_home() %}page-home{% endif -%}
-{% endblock %}
 
-{% block content %}
-  <section id="posts" class="posts-expand">
-    {% for post in page.posts %}
-      {{ post_template.render(post, true) }}
-    {% endfor %}
-  </section>
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
 
-  {% include '_partials/pagination.swig' %}
-{% endblock %}
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"github.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
 
-{% block sidebar %}
-  {{ sidebar_template.render(false) }}
-{% endblock %}
+  <meta name="description" content="岁月静好，只为有你">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Lzlou&#39;s Blog">
+<meta property="og:url" content="https://github.com/LJYmaodou/LJYmaodou.github.io/index.html">
+<meta property="og:site_name" content="Lzlou&#39;s Blog">
+<meta property="og:description" content="岁月静好，只为有你">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="lzlou">
+<meta property="article:tag" content="Essay,Dailylife,Thoughts,History,NLP">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://github.com/LJYmaodou/LJYmaodou.github.io/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Lzlou's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Lzlou's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Colorful things about Maodou</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content index posts-expand">
+            
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://github.com/LJYmaodou/LJYmaodou.github.io/2021/04/28/%E8%BF%91%E6%9C%9F%E5%81%9A%E8%8F%9C%E5%BF%83%E5%BE%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="lzlou">
+      <meta itemprop="description" content="岁月静好，只为有你">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lzlou's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/04/28/%E8%BF%91%E6%9C%9F%E5%81%9A%E8%8F%9C%E5%BF%83%E5%BE%97/" class="post-title-link" itemprop="url">近期做菜心得</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-04-28 20:01:05 / 修改时间：20:19:09" itemprop="dateCreated datePublished" datetime="2021-04-28T20:01:05+08:00">2021-04-28</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="蒸"><a href="#蒸" class="headerlink" title="蒸"></a>蒸</h2><p>做了一次蒜蓉粉丝花甲虾，发现粉丝很容易泡发，看着少，整出来就很多。现成的蒜蓉酱比较生，不要直接放在上面，最好和蒜蓉一起小火炒一会儿即可。<br>生蚝很容易老，蒸的时间不宜过长，一般5分钟即可</p>
+<h2 id="炒"><a href="#炒" class="headerlink" title="炒"></a>炒</h2><p>肝腰合炒，做的味道还可以，但是汤汁不够浓郁，原因在于肝腰腌制前没有沥干水分，导致腌制时析出大量水分，大火入锅炒时，水分过多不容易入味。<br>腰花比较好改刀，因为偏硬，但是猪肝偏软，不好改刀。</p>
+<h2 id="烤"><a href="#烤" class="headerlink" title="烤"></a>烤</h2><p>用烤箱烤了一次五花肉和鸡翅、茄子。<br>茄子按照网上教程烤的比较好，但是蒜蓉有些糊，可以分三次烤茄子，第一次烤15分钟烤软，第二次涮油烤10分钟烤入味，第三次加入蒜蓉再烤5分钟，避免蒜蓉放入过早而糊掉。<br>五花肉最好在片之前冻硬，不然不好改刀切成薄片，五花肉一般烤10分钟即可。鸡翅需要改上花刀，方便腌制时入味，而且容易熟，一般烤25分钟左右。</p>
+<h2 id="酸菜鱼"><a href="#酸菜鱼" class="headerlink" title="酸菜鱼"></a>酸菜鱼</h2><p>汤不够酸，问题是酸菜泡的时间过长，且单独拎出来炒干了水分，不入味。<br>腌鱼也没有很好，最好的步骤是：<br>1.先放葱姜料酒胡椒粉去腥，抓至黏稠。<br>2.放入生粉，再次抓至黏稠，加入食用油锁住水分。<br>鱼汤不够白，可以：<br>1.鱼骨和鱼头单独拿出来，加入盐腌制10分钟即可，然后小火慢煎，至两面金黄，这是鱼汤不腥且白的原因。<br>2.鱼骨煎好后，拿出备用，然后下入蒜和姜片、花椒入锅小火炒香，再放入酸菜，炒一会儿后，加入煎好的鱼骨，翻炒均匀，然后加入开水即可。<br>3.鱼最后加入汤里的时候，关火，利用余温将片好的鱼片加热至成熟。</p>
+<h2 id="西红柿超级蛋"><a href="#西红柿超级蛋" class="headerlink" title="西红柿超级蛋"></a>西红柿超级蛋</h2><p>西红柿切十字花刀，然后放入开水中泡一会儿即可轻易撕掉外皮。<br>打鸡蛋时，可以滴入几滴白醋后，可使鸡蛋蓬松。<br>鸡蛋不要煎的太老，比如有些糊，炒至不成液状即可。<br>西红柿先入锅小炒至全部变软，此时，西红柿的汤汁充分析出，然后可以加入适量清水，方便后续勾芡。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://github.com/LJYmaodou/LJYmaodou.github.io/2021/04/27/%E4%BF%8A%E5%AE%9D/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="lzlou">
+      <meta itemprop="description" content="岁月静好，只为有你">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lzlou's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/04/27/%E4%BF%8A%E5%AE%9D/" class="post-title-link" itemprop="url">俊宝</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-04-27 15:20:08" itemprop="dateCreated datePublished" datetime="2021-04-27T15:20:08+08:00">2021-04-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-04-28 19:39:11" itemprop="dateModified" datetime="2021-04-28T19:39:11+08:00">2021-04-28</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><em>“我的老婆是毛俊，遇见她是我一辈子的幸运”</em><br>我们相识于2018年10月的微信，我记得你第一次问我的是：“你是否以后回苏杭发展的打算”。这种典型的相亲式的提问，瞬间让我觉得有些突兀，但是，却给我留下你心直口快的爽朗性格。<br>此后，我们便在微信上时常联系，你分享你的快乐忧愁，而我却甘心做你的听众，虽然有时忙于工作无暇顾及，或者耽于生活中的焦虑。可能因为我们都是第一次来到深圳这个地方，所以有些同理心，而我亦对你说从事的教育行业比较感兴趣，因此容易产生共鸣。<br>2019年9月14日，也就是中秋节假期的第二天，我来帮你搬家具。那是我俩第一次见面，在中粮。开门看到你的第一眼，就是如同在以后咱俩的婚礼上所说的：你身穿一袭黑色的长裙，可能由于没有休息好，面色略有疲倦，像刚睡醒一样，显得比较的慵懒。没有那么正式，却给我一种亲切和随和的印象。<br>后面的两天假期，我们就开始布置你的新房，打扫卫生，去宜家购买家具，并自己照着说明书一一安装。虽然不是很熟练，却在两人的欢声笑语中，慢慢装了个大概。你后来总是开玩笑说：是我的木工手艺打动了你。<br>经过两周的相处后，我们迅速恋爱了，这是我的第一次恋爱，我觉得也是你的第一次。<br>那个时候，我住在坪洲的麻布新村。你觉得那边热闹，因此经常放假的时候跑过来住，后来的你总是怀念那段时光：虽然住着稍显拥挤的农民房，但是每天可以无忧无虑地和爱的人在一起，什么都不用考虑。最重要的是，坪洲的小吃街满足了多肉的胃。<br>2020年1月18日，我陪你回襄阳见你的爸爸妈妈。我们从武汉转车，并且在汉口火车站住了一晚。武汉那个时候开始疫情变得严重，但是我俩跟个马大哈一样，丝毫没有关注到新闻。那天晚上，我们在路边摊吃了牛肉粉、热干面和千张肉丝，超级满足，那是家乡的味道。吃完还不知死活的绕着离疫情发源地–华南海鲜市场仅有500米的地方散步。后来一想，咱俩还算历经过生死的呢。<br>第一次，我来到了襄阳，牵着最爱的你，见你的亲人。冬天的襄阳挂满了大雾，下车很冷，但是心很暖。我们游了楚都公园和汉水。还在你家学会了怎么包饺子。<br><img src="%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_202104281343232.jpg"><br><img src="%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_202104281343231.jpg"><br><img src="%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_202104281343233.jpg"><br><img src="%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20210428134323.jpg"></p>
+<p>江城肆疫十指扣<br>伊语喃喃夜梦柔<br>楚都园游冬风船<br>几多汉水几思卿<br>&nbsp;春节期间，疫情加重，我在深圳，你在襄阳，相隔两地，每天就是下班后与你视频直到要去睡觉。时刻询问你的身体状况，叮嘱你要照顾好自己。那时，口罩短缺，N95口罩更是少的可怜，最贵时15元一只。我到处询问药店，买到了一些，担心家里封村买不到，就将大部分寄了回去，希望你安康。<br><img src="Screenshot_2020-01-27-23-09-11-40(1).jpg"><br>&nbsp;四月，你终于坐20多小时的点对点的大巴回到了深圳。很激动，如同很久没见的亲人，甚是想念。打扫好房间，整理好衣物，早早地去买上一束你最喜欢的百合，迎接它的主人的到来。<br>&nbsp;4~6月，我们一直在看房子，希望能在深圳上车。我们从最远的后瑞一直沿着107国道看到新安这边。因为买房的观念不一样，以及看着每天房价的上涨而心生焦虑，我们有过不少的争吵。但是最终依然和好如初，因为我们有一个信念，就是希望能有一个自己的家。<br>&nbsp;看房子是一个艰难的过程，特别考验人的心态。五月正是深圳开始炎热的时候，我们撑着伞，周末一个楼盘一个楼盘的跑去看房。从万象新天、凤凰雅居、中信领航城一直看到桃源居、果岭花园和新安湖花园。其间，看到好的户型后，我们有冲动去做决定购买，但大多数情况下依然却步了，因为对于刚来深圳两年的我们来说，这是一大笔钱，并且我们对房子这种东西并不是很了解，心里还是没底。还见证了流塘阳光从19年底450万猛涨到20年初的550万，这种变态式的房价涨幅，最终让我们日益焦虑。<br><img src="Screenshot_2020-06-13-08-58-22-34_ed172082f452f2692d93fa02cf735b5e.jpg"><br><img src="Screenshot_2020-06-13-08-58-39-33_ed172082f452f2692d93fa02cf735b5e.jpg"><br><img src="Screenshot_2020-06-13-08-58-39-33_ed172082f452f2692d93fa02cf735b5e.jpg"><br><img src="Screenshot_2020-06-13-08-58-39-33_ed172082f452f2692d93fa02cf735b5e.jpg"><br><img src="Screenshot_2020-06-13-08-58-39-33_ed172082f452f2692d93fa02cf735b5e.jpg"><br><img src="Screenshot_2020-06-13-09-00-56-00_ed172082f452f2692d93fa02cf735b5e.jpg"><br>&nbsp;看了两个月的房子，有些心力交瘁，我们一致选择先消停一段时间，冷静一下。在六月初，我们在学生家长的建议下，再次去看房，这次来到了新安湖花园。虽然该小区比较老，但是环境不错而且离学校近，周边配套成熟。看了几套下来，一套二楼的80平楼梯三房吸引了我们，从而下定决心买下来。可是，不幸的是，在周末要去付定金的时候，我们才得知房子的贷款年限只有17年，每月得支付2.4万的月供，这对于我们来说，显然压力过大，最终无奈之下不得不放弃。那时，感觉真的已经心灰意冷了，我们和学生家长走在新安湖小区外面的建安一路，觉得整个深圳好像已经买不到适合我们的房子了。可能是老天的眷顾，正在我们心灰意冷之际，我们走到海雅缤纷城对面的香缤广场，你突然提出想去看看里面的房子。最终，我们看上了现在买的房子，并当场打电话给业主，希望尽早谈下来。那一刻，我俩算是真正统一思想和立场了，都对这一套房子情有独钟。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://github.com/LJYmaodou/LJYmaodou.github.io/2021/04/27/%E4%BD%A0%E5%A5%BD%EF%BC%8C%E6%AF%9B%E8%B1%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="lzlou">
+      <meta itemprop="description" content="岁月静好，只为有你">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lzlou's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/04/27/%E4%BD%A0%E5%A5%BD%EF%BC%8C%E6%AF%9B%E8%B1%86/" class="post-title-link" itemprop="url">你好，毛豆</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-04-27 13:21:20 / 修改时间：15:11:42" itemprop="dateCreated datePublished" datetime="2021-04-27T13:21:20+08:00">2021-04-27</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><p>我的女儿，小名叫毛豆，我和妈妈给她取名叫娄婧祎<br><img src="%E5%A9%9A%E7%BA%B1%E7%85%A7.jpg"><br><img src="%E6%86%A8%E6%86%A8.jpg"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://github.com/LJYmaodou/LJYmaodou.github.io/2021/04/27/github-hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%E7%9A%84%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="lzlou">
+      <meta itemprop="description" content="岁月静好，只为有你">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lzlou's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/04/27/github-hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%E7%9A%84%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">github+hexo搭建个人博客网站的总结</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-04-27 12:20:25 / 修改时间：15:09:12" itemprop="dateCreated datePublished" datetime="2021-04-27T12:20:25+08:00">2021-04-27</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h2><h3 id="创建github仓库"><a href="#创建github仓库" class="headerlink" title="创建github仓库"></a>创建github仓库</h3><p>比如，github上利用已有账号（没有注册可以注册一个），创建一个repository，我们创建的repository如下：<br><a href="https://github.com/LJYmaodou/LJYmaodou.github.io.git">https://github.com/LJYmaodou/LJYmaodou.github.io.git</a><br>其中，LJYmaodou表示用户名；LJYmaodou.github.io表示repository的名字（一个用户名下一般有多个repository）</p>
+<h3 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h3><p>按照<a target="_blank" rel="noopener" href="https://mumaxu.github.io/2018/12/09/GitHub-Hexo-%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">参考教程</a>来即可</p>
+<h3 id="安装主题Next"><a href="#安装主题Next" class="headerlink" title="安装主题Next"></a>安装主题Next</h3><p>原教程使用的是以下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> https://github.com/iissnan/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure>
+<p>安装后发现本地预览失败，里面出现一堆不符合与其的字符串。因此考虑重新换个安装包安装。<br>新命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> https://github.com/theme-next/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure>
+<p>（参考<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_44219883/article/details/105178206">另外一个教程</a>）</p>
+<h3 id="MarkDown的语法简介"><a href="#MarkDown的语法简介" class="headerlink" title="MarkDown的语法简介"></a>MarkDown的语法简介</h3><p>可以参考<a target="_blank" rel="noopener" href="https://www.appinn.com/markdown/#blockquote">这里</a></p>
+<h3 id="hexo配置问题系列"><a href="#hexo配置问题系列" class="headerlink" title="hexo配置问题系列"></a>hexo配置问题系列</h3><p>1.hexo博客在本地可以正常预览,部署到github上后为什么无法显示样式,只有内容呢？<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/319817323">链接</a><br><em>解决方法</em><br>基本上是hexo配置文件_config.yml内url和root这个配置项出现问题，参考配置：<br><a href="https://github.com/LJYmaodou/LJYmaodou.github.io">https://github.com/LJYmaodou/LJYmaodou.github.io</a><br>url: <a href="https://github.com/LJYmaodou/LJYmaodou.github.io">https://github.com/LJYmaodou/LJYmaodou.github.io</a><br>root: /<br>2.最好不要直接上github，即不要直接hexo d 将代码push到远程仓库来预览，可以hexo s在本地预览</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo s</span><br></pre></td></tr></table></figure>
+<p>或者</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo s -p 5000</span><br></pre></td></tr></table></figure>
+<p>前者默认在4000端口，后者设置为5000端口（前面一个访问失败，可以尝试后面一个）</p>
+<h3 id="上传图片"><a href="#上传图片" class="headerlink" title="上传图片"></a>上传图片</h3><h4 id="方法1"><a href="#方法1" class="headerlink" title="方法1"></a>方法1</h4><p><a target="_blank" rel="noopener" href="https://fuhailin.github.io/Hexo-images/">参考教程</a><br>注意站点目录指得是根目录，而主题目录指的是Next主题所在目录，如 D:\Blog\themes\next。而这两个不同的目录都有一个配置文件_config.yml。<br>在主题目录中找到 source/images目录（绝对路径 D:\Blog\themes\next\source\images）将所需要上传的图片复制到该目录下即可。在.MD文件中直接引用即可。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">![](&#x2F;images&#x2F;婚纱照.jpg)</span><br><span class="line">![](&#x2F;images&#x2F;憨憨.jpg)</span><br></pre></td></tr></table></figure>
+<h4 id="方法2"><a href="#方法2" class="headerlink" title="方法2"></a>方法2</h4><p>对于大量图片且希望和.md文件整理在一起的话，可以采用第二种方法上传图片。<br>将_config.yml文件中的配置项post_asset_folder设为true后，执行命令$ hexo new post_name，在source/_posts中会生成文章post_name.md和同名文件夹post_name。将图片资源放在post_name中，文章就可以使用相对路径引用图片资源了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">![](婚纱照.jpg)</span><br><span class="line">![](憨憨.jpg)</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://github.com/LJYmaodou/LJYmaodou.github.io/2021/04/27/hello-world/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="lzlou">
+      <meta itemprop="description" content="岁月静好，只为有你">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lzlou's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/04/27/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-04-27 11:19:39" itemprop="dateCreated datePublished" datetime="2021-04-27T11:19:39+08:00">2021-04-27</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">lzlou</p>
+  <div class="site-description" itemprop="description">岁月静好，只为有你</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lzlou</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
